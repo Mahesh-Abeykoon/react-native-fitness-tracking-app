@@ -14,7 +14,7 @@ const HomeScreen = () => {
     <ScrollView style={{ marginTop: 50 }}>
       <View
         style={{
-          backgroundColor: "#RD123P",
+          backgroundColor: "#0f5b8e",
           padding: 15,
           height: 150,
           width: "100%",
