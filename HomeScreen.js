@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Text, View, ScrollView } from "react-native";
+import FitnessCards from "./components/FitnessCards";
 import { FitnessItems } from "./Context";
 
 const HomeScreen = () => {
@@ -79,6 +80,7 @@ const HomeScreen = () => {
           </View>
         </View>
       </View>
+      <FitnessCards/>
     </ScrollView>
   );
 };
