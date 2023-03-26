@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Text, View, ScrollView } from "react-native";
 import FitnessCards from "./components/FitnessCards";
 import { FitnessItems } from "./Context";
+import { styles } from "./styles/HomeScreenStyles";
 
 const HomeScreen = () => {
   const {
@@ -11,76 +12,39 @@ const HomeScreen = () => {
   } = useContext(FitnessItems);
 
   return (
-
-    <ScrollView style={{ marginTop: 50 }}>
-      <View
-        style={{
-          backgroundColor: "#0f5b8e",
-          padding: 15,
-          height: 150,
-          width: "100%",
-        }}>
-        <Text style={{ 
-            color: "white", 
-            textAlign:"center", 
-            fontSize: 16 }}>
-                
-          WELCOME TO HOME WORKOUT</Text>
-
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: 22,
-          }}>
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "white",
-                fontSize: 18,
-              }}>   
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>
+          WELCOME TO HOME WORKOUT
+        </Text>
+        <View style={styles.row}>
+          <View style={styles.metricContainer}>
+            <Text style={styles.metricText}>
               {workoutsDone}
             </Text>
-            <Text style={{ fontSize: 16, marginTop: 6 }}>
-            WORKOUT
+            <Text style={styles.metricLabel}>
+              WORKOUT
             </Text>
           </View>
-
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "white",
-                fontSize: 18,
-              }}>   
+          <View style={styles.metricContainer}>
+            <Text style={styles.metricText}>
               {caloriesBurnt}
             </Text>
-            <Text style={{ fontSize: 16, marginTop: 6 }}>
-                CALORIES
+            <Text style={styles.metricLabel}>
+              CALORIES
             </Text>
           </View>
-
-          <View>
-            <Text
-              style={{
-                textAlign: "center",
-                fontWeight: "bold",
-                color: "white",
-                fontSize: 18,
-              }}>   
+          <View style={styles.metricContainer}>
+            <Text style={styles.metricText}>
               {minutesSpent}
             </Text>
-            <Text style={{ fontSize: 16, marginTop: 6 }}>
-            MINUTES
+            <Text style={styles.metricLabel}>
+              MINUTES
             </Text>
           </View>
         </View>
       </View>
-      <FitnessCards/>
+      <FitnessCards />
     </ScrollView>
   );
 };
