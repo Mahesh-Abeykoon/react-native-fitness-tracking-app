@@ -1,30 +1,35 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import fitness from "./fitness";
+import { useNavigation } from "@react-navigation/native";
+import styles from "../styles/FitnessCardsStyles";
 
 const FitnessCards = () => {
     const FitnessData = fitness;
+    const navigation = useNavigation();
 
     return (
         <View>
-        
            {FitnessData.map((item, key) => (
-            <Pressable
-            style={{alignItems: "center", justifyContent: "center", margin: 10 }} 
+            <Pressable  
+            // onPress={()=> console.warn("Clicked", item.name)}
+                onPress={() => navigation.navigate("Workout", {
+                    image:item.image,
+                    excersises:item.excersises,
+                    id:item.id
+                })}
+                style={styles.container}
                 key={key}>
-            <Image
-            style={{ width:"95%", height:140, borderRadius: 7 }}
-                source={{ uri: item.image }}/>
-            <Text 
-            style={{ position:"absolute", color:"white",fontSize:16, fontWeight:"bold", left:20, top:25 }}>
-                {item.name} </Text>
-            
+                <Image
+                    style={styles.image}
+                    source={{ uri: item.image }}
+                />
+                <Text style={styles.text}>{item.name}</Text>
             </Pressable>
            ))}
         </View> 
     )
 }
 
-export default FitnessCards
+export default FitnessCards;
 
-const styles = StyleSheet.create({});
