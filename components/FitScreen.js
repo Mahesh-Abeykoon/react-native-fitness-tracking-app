@@ -27,26 +27,25 @@ const FitScreen = () => {
   return (
     <SafeAreaView>
       <Image
-        style={FitScreenStyles.image}
-        source={{ uri: current.image }}
+        style={FitScreenStyles.workoutImage} source={{ uri: current.image }}
       />
-      <Text style={FitScreenStyles.title}>{current.name}</Text>
-
-      <Text style={FitScreenStyles.subtitle}>x{current.sets}</Text>
+      <Text style={FitScreenStyles.workoutName}>{current.name}</Text>
+      <Text style={FitScreenStyles.workoutSets}>[x{current.sets} Times]</Text>
 
       {index + 1 >= excersise.length ? (
         <Pressable
           onPress={() => {
             navigation.navigate("Home");
           }}
-          style={FitScreenStyles.button}
+          style={FitScreenStyles.doneButtonContainer}
         >
-          <Text style={FitScreenStyles.buttonText}>DONE</Text>
+          <Text 
+          style={FitScreenStyles.doneButtonText}>DONE</Text>
         </Pressable>
       ) : (
         <Pressable
           onPress={() => {
-            navigation.navigate("Rest");
+            navigation.navigate("Break");
             setCompleted([...completed, current.name]);
             setWorkout(workout + 1);
             setMinutes(minutes + 2.5);
@@ -55,46 +54,52 @@ const FitScreen = () => {
               setIndex(index + 1);
             }, 2000);
           }}
-          style={FitScreenStyles.button}
+          style={FitScreenStyles.doneButtonContainer}
         >
-          <Text style={FitScreenStyles.buttonText}>DONE</Text>
+          <Text 
+          style={FitScreenStyles.doneButtonText}>DONE</Text>
         </Pressable>
       )}
 
-      <Pressable style={FitScreenStyles.controlsContainer}>
+      <Pressable style={FitScreenStyles.preButton}>
+
         <Pressable
           disabled={index == 0}
           onPress={() => {
-            navigation.navigate("Rest");
+            navigation.navigate("Break");
             setTimeout(() => {
               setIndex(index - 1);
             }, 2000);
           }}
-          style={[FitScreenStyles.controlButton, { backgroundColor: 'green' }]}
+          style={FitScreenStyles.prevButtonContainer}
         >
-          <Text style={FitScreenStyles.controlButtonText}>PREV</Text>
+          <Text 
+          style={FitScreenStyles.prevButtonText}>PREV</Text>
         </Pressable>
 
         {index + 1 >= excersise.length ? (
+
           <Pressable
             onPress={() => {
               navigation.navigate("Home");
             }}
-            style={[FitScreenStyles.controlButton, { backgroundColor: 'green' }]}
+            style={FitScreenStyles.skipButtonContainer}
           >
-            <Text style={FitScreenStyles.controlButtonText}>SKIP</Text>
+            <Text 
+            style={FitScreenStyles.skipButtonText}>SKIP</Text>
           </Pressable>
         ) : (
           <Pressable
             onPress={() => {
-              navigation.navigate("Rest");
+              navigation.navigate("Break");
               setTimeout(() => {
                 setIndex(index + 1);
               }, 2000);
             }}
-            style={[FitScreenStyles.controlButton, { backgroundColor: 'green' }]}
+            style={FitScreenStyles.skipButtonContainer}
           >
-            <Text style={FitScreenStyles.controlButtonText}>SKIP</Text>
+            <Text 
+            style={FitScreenStyles.skipButtonText}>SKIP</Text>
           </Pressable>
         )}
       </Pressable>

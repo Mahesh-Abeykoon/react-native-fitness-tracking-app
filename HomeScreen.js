@@ -6,9 +6,9 @@ import { styles } from "./styles/HomeScreenStyles";
 
 const HomeScreen = () => {
   const {
-    workoutsDone,
-    caloriesBurnt,
-    minutesSpent,
+    workout,
+    calories,
+    minutes,
   } = useContext(FitnessItems);
 
   return (
@@ -20,7 +20,7 @@ const HomeScreen = () => {
         <View style={styles.row}>
           <View style={styles.metricContainer}>
             <Text style={styles.metricText}>
-              {workoutsDone}
+              {workout}
             </Text>
             <Text style={styles.metricLabel}>
               WORKOUT
@@ -28,7 +28,7 @@ const HomeScreen = () => {
           </View>
           <View style={styles.metricContainer}>
             <Text style={styles.metricText}>
-              {caloriesBurnt}
+              {calories}
             </Text>
             <Text style={styles.metricLabel}>
               CALORIES
@@ -36,7 +36,7 @@ const HomeScreen = () => {
           </View>
           <View style={styles.metricContainer}>
             <Text style={styles.metricText}>
-              {minutesSpent}
+              {minutes}
             </Text>
             <Text style={styles.metricLabel}>
               MINUTES
