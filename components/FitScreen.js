@@ -30,7 +30,7 @@ const FitScreen = () => {
         style={FitScreenStyles.workoutImage} source={{ uri: current.image }}
       />
       <Text style={FitScreenStyles.workoutName}>{current.name}</Text>
-      <Text style={FitScreenStyles.workoutSets}>x{current.sets} Times</Text>
+      <Text style={FitScreenStyles.workoutSets}>[x{current.sets} Times]</Text>
 
       {index + 1 >= excersise.length ? (
         <Pressable
