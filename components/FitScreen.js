@@ -45,7 +45,7 @@ const FitScreen = () => {
       ) : (
         <Pressable
           onPress={() => {
-            navigation.navigate("Rest");
+            navigation.navigate("Break");
             setCompleted([...completed, current.name]);
             setWorkout(workout + 1);
             setMinutes(minutes + 2.5);
@@ -66,7 +66,7 @@ const FitScreen = () => {
         <Pressable
           disabled={index == 0}
           onPress={() => {
-            navigation.navigate("Rest");
+            navigation.navigate("Break");
             setTimeout(() => {
               setIndex(index - 1);
             }, 2000);
@@ -91,7 +91,7 @@ const FitScreen = () => {
         ) : (
           <Pressable
             onPress={() => {
-              navigation.navigate("Rest");
+              navigation.navigate("Break");
               setTimeout(() => {
                 setIndex(index + 1);
               }, 2000);
