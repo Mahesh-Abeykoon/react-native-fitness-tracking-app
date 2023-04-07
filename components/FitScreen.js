@@ -1,12 +1,13 @@
 import { Text, SafeAreaView, Image, Pressable } from "react-native";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { FitnessItems } from "../Context";
 import FitScreenStyles from "../styles/FitScreenStyles";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FitScreen = () => {
   const route = useRoute();
-  // console.log(route.params);
+    // console.log(route.params);
   const navigation = useNavigation();
   const [index, setIndex] = useState(0);
   const excersise = route.params.excersises;
@@ -23,6 +24,38 @@ const FitScreen = () => {
     setMinutes,
   } = useContext(FitnessItems);
 // console.log(completed, "Completed Excersise!");
+
+  // Load saved workout data on app startup
+  useEffect(() => {
+    async function loadWorkoutData() {
+      try {
+        const savedData = await AsyncStorage.getItem('workoutData');
+        if (savedData !== null) {
+          const { completed: savedCompleted, workout: savedWorkout, calories: savedCalories, minutes: savedMinutes } = JSON.parse(savedData);
+          setCompleted(savedCompleted);
+          setWorkout(savedWorkout);
+          setCalories(savedCalories);
+          setMinutes(savedMinutes);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    loadWorkoutData();
+  }, []);
+
+  // Save workout data to AsyncStorage whenever it changes
+  useEffect(() => {
+    async function saveWorkoutData() {
+      try {
+        const dataToSave = JSON.stringify({ completed, workout, calories, minutes });
+        await AsyncStorage.setItem('workoutData', dataToSave);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    saveWorkoutData();
+  }, [completed, workout, calories, minutes]);
 
   return (
     <SafeAreaView>

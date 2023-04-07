@@ -1,15 +1,26 @@
-import React, { useContext } from "react";
+import React, { useState,useEffect } from "react";
 import { Text, View, ScrollView } from "react-native";
 import FitnessCards from "./components/FitnessCards";
-import { FitnessItems } from "./Context";
 import { styles } from "./styles/HomeScreenStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HomeScreen = () => {
-  const {
-    workout,
-    calories,
-    minutes,
-  } = useContext(FitnessItems);
+  const [completed, setCompleted] = useState([]);
+  const [workout, setWorkout] = useState(0);
+  const [calories, setCalories] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+
+  useEffect(() => {
+    AsyncStorage.getItem("workoutData").then((data) => {
+      if (data) {
+        const parsedData = JSON.parse(data);
+        setCompleted(parsedData.completed);
+        setWorkout(parsedData.workout);
+        setMinutes(parsedData.minutes);
+        setCalories(parsedData.calories);
+      }
+    });
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
