@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    fontWeight: "920",
+    fontWeight: "normal",
     marginTop: 50,
     textAlign: "center",
   },
