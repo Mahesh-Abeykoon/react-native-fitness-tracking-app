@@ -34,4 +34,10 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 6,
   },
+  shareButton: {
+    position: 'absolute',
+    top: 6,
+    right: 30,
+    padding: 10,
+  },
 });
